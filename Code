@@ -1,0 +1,45 @@
+create table products(
+prod_id int primary key,
+name varchar(10),
+price int,
+description varchar(20));
+
+create table customers(
+email varchar(20) primary key,
+username varchar(10),
+password varchar(10),
+address varchar(40));
+
+create table order_details(
+order_id int primary key,
+amount int,
+address varchar(40),
+date_of_order date,
+date_of_deliver date);
+
+create table cart(
+cust_id varchar(20),
+prod_id int,
+foreign key (cust_id) references customers(email),
+foreign key (prod_id) references products(prod_id));
+
+create table order_products(
+order_id int,
+prod_id int,
+quantity int,
+foreign key (prod_id) references products(prod_id),
+foreign key (order_id) references order_details(order_id),
+primary key(order_id,prod_id));
+
+insert into products values(&prod_id,&name,&price,&description);
+insert into customers values(&email,&username,&password,&phoneno,&address);
+insert into cart values(&cust_id,&product_id);
+insert into order_details values(&order_id,&amount,&address,&date_of_order,&date_of_deliver);
+insert into order_products values(&order_id,&prod_id,&quantity);
+
+
+
+
+
+
+
